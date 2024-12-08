@@ -1,8 +1,15 @@
 const express = require('express');
+const cors = require('cors');
 const fs = require('fs');
 const app = express();
 
+// Use CORS middleware
+app.use(cors());
+
 app.get('/', (req, res) => {
+    origin: 'http://localhost:4200',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
   // Read the db.json file
   fs.readFile('./db.json', 'utf8', (err, data) => {
     if (err) {
